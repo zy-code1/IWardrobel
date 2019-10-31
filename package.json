@@ -22,6 +22,7 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "postcss-px-to-viewport": "^1.1.1",
     "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
@@ -44,7 +45,15 @@
   },
   "postcss": {
     "plugins": {
-      "autoprefixer": {}
+      "autoprefixer": {},
+      "postcss-px-to-viewport": {
+        "viewportWidth": "375", 
+        "unitPrecision": "5",
+        "viewportUnit": "vw", 
+        "selectorBlackList": [ ".ignore" ],
+        "minPixelValue": 1, 
+        "mediaQuery": false
+      }
     }
   },
   "browserslist": [

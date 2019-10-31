@@ -75,7 +75,6 @@ export default {
     this.$bus.$on('refresh',()=>{
       this.$refs.bsll.scroll.refresh()
     })
-    console.log(this.$refs.bsll.scroll)
   },
   methods: {
     //请求轮播图和其下面的数据的方法

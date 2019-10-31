@@ -1,6 +1,6 @@
 <template>
 <div class="detail">
-  <denav-bar ref="navbar" @titleClick="titleClick"></denav-bar>
+  <nav-bar ref="navbar" @titleClick="titleClick"></nav-bar>
   <better-scroll class="bs" @scroll="scroll" ref='bscroll'>
     <detail-swiper :topImage="topImage" class="detailSwiper"></detail-swiper>
     <goods-mes :title="title" :oldPrice="oldPrice"
@@ -23,8 +23,8 @@
                     @recommendRefresh="recommendRefresh">
     </copy-home-good>
   </better-scroll>
-  <toast class="toast"  v-show="isShow"></toast>
-  <insert-cart :cartGood="cartGood" @toastShow="toastShow(res)"></insert-cart>
+  <toast class="toast" v-show="isShowed">{{res}}</toast>
+  <insert-cart :cartGood="cartGood" @toastShow="toastShow"></insert-cart>
 </div>
 </template>
 
@@ -32,7 +32,7 @@
 import betterScroll from 'components/common/betterscroll/betterscroll.vue'
 import toast from 'components/content/toast/toast.vue'
 
-import denavBar from './childcomponents/navbar.vue'
+import navBar from './childcomponents/navbar.vue'
 import detailSwiper from './childcomponents/detailswiper.vue'
 import goodsMes from './childcomponents/goodsMes.vue'
 import shopInfo from './childcomponents/shopInfo.vue'
@@ -71,12 +71,12 @@ export default {
             recommend:[],
             cartGood:{},
             checked:'true',
-            message:null,
-            isShow:flase
+            isShowed:false,
+            res:null
         }
     },
     components:{
-        denavBar,
+        navBar,
         detailSwiper,
         goodsMes,
         shopInfo,
@@ -136,21 +136,20 @@ export default {
       //滑动改便相应的参数推荐评论 方法往数组末尾中加入一个很大的值
       scroll(position){
           var y=-position.y
-          for(let i=0;i<this.scrollToWhere.length;i++){
+          for(let i=0;i< this.scrollToWhere.length;i++){
               if(y>=this.scrollToWhere[i] && y<this.scrollToWhere[i+1]){
                   this.$refs.navbar.currentIndex=i
               }
           }
       },
-      //显示toast 冒个气
-    //   toastShow(res){
-    //       this.message=res;
-    //       this.isShow=true;
-    //       setTimeout(()=>{
-    //           this.isShow=flase;
-    //           this.message=''
-    //       },1000)
-    //   }
+      toastShow(res){
+        this.isShowed=true
+        this.res=res
+        setTimeout(()=>{
+          this.isShowed=false
+          this.res=""
+        },1000)
+      }
   },
 }
 </script>
@@ -171,12 +170,17 @@ export default {
     background: white
 }
 .toast{
-    background: red;
+    background:rgba(0, 0, 0, .8);
     position: fixed;
     top: 44%;
     left: 50px;
     width: 205px;
     height: 51px;
     z-index: 30;
+    color: aliceblue;
+    border-radius: 15px;
+    text-align: center;
+    line-height: 51px;
+    font-size: 25px;
 }
 </style>

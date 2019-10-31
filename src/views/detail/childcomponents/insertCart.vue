@@ -17,9 +17,7 @@ export default {
     },
     methods: {
         addCartClick(){
-            this.$store.dispatch('addCart',this.cartGood).then(res=>{
-                console.log(res)
-            })
+            this.$store.dispatch('addCart',this.cartGood).then(res=>this.$emit('toastShow',res))
         }
     },
 }

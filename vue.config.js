@@ -9,7 +9,8 @@ module.exports = {
           'views': '@/views',
         }
       }
-    }
+    },
   }
+  
   
   

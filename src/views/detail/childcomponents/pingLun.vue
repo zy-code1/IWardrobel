@@ -5,8 +5,8 @@
           <span>更多 =></span>
       </div>
       <div class="user">
-          <img :src="pingLun.user.avatar">
-          <span>{{pingLun.user.uname}}</span>
+          <img :src=this.pingLun.user.avatar>
+          <span>{{this.pingLun.user.uname}}</span>
       </div>
       <div class="content">{{pingLun.content}}</div>
       <div class="extraInfo"><strong v-for="(item,index) of pingLun.extraInfo" :key="index">{{item+'/'}}</strong></div>
@@ -17,6 +17,12 @@
 
 <script>
 export default {
+    data() {
+        return {
+            name:null,
+            ava:null
+        }
+    },
     props:{
         pingLun:{
             type:Object,
@@ -24,9 +30,6 @@ export default {
                 return {content:'该用户未评价'}
             }
         }
-    },
-    created() {
-        console.log(this.pingLun)
     },
 }
 </script>

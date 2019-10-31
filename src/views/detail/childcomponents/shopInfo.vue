@@ -38,7 +38,7 @@
 export default {
 props:{
     name:{
-      type:String
+      type:String,
     },
     shopLogo:{
       type:String
